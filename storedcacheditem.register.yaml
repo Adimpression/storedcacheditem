@@ -1,0 +1,23 @@
+artifact:
+  appState: 'IsStoredCachedItem'
+  appName: 'storedcacheditem'
+  appDomain: 'storedcacheditem'
+  appImage:
+    development: 'localhost:32000/storedcacheditem'
+    staging:
+    production: 'storedcacheditem'
+  appRelease: '1.0.0'
+  appSpacialScope:
+    internet: false
+    cluster: true
+  ports:
+    - 8080
+  conf:
+    development:
+    staging:
+    production:
+  enc:
+    development:
+    staging:
+    production:
+  dependencies:
