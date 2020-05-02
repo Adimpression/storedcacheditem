@@ -4,7 +4,7 @@
 
     <groupId>storedcacheditem</groupId>
     <artifactId>storedcacheditem</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <appState>IsStoredCachedItem</appState>
@@ -20,7 +20,7 @@
     <scm>
         <developerConnection>scm:git:git@github.com:Adimpression/${project.name}.git</developerConnection>
         <connection>scm:git:git@github.com:Adimpression/${project.name}.git</connection>
-        <tag>HEAD</tag>
+        <tag>storedcacheditem-1.0.0</tag>
     </scm>
 
     <distributionManagement>
