@@ -21,3 +21,11 @@ artifact:
     staging:
     production:
   dependencies:
+    - artifact:
+        appState: 'IsRemovedCachedItem'
+        appName: 'removedcacheditem'
+        appDomain: 'removedcacheditem'
+    - artifact:
+        appState: 'IsRetrievedCachedItem'
+        appName: 'retrievedcacheditem'
+        appDomain: 'retrievedcacheditem'

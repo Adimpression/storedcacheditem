@@ -45,6 +45,8 @@ public class ToIsStoredCachedItemImplBaseImpl extends ToIsStoredCachedItemGrpc.T
     public void produce(final NotStoredCachedItem request, final StreamObserver<IsStoredCachedItem> responseObserver) {
         try {
             final IsId isId;
+            final String isStringValue;
+
             if (!request.hasIsInput()) {
                 throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("422"));
             }
@@ -65,18 +67,27 @@ public class ToIsStoredCachedItemImplBaseImpl extends ToIsStoredCachedItemGrpc.T
                 throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("422"));
             }
 
+            isStringValue = isId.getIsOutput()
+                    .getIsStringValue();
+
+            if (isStringValue.isEmpty()) {
+                throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("422"));
+            }
+
             if (isInput.getIsUseLockBoolean()) {
                 lock.lock();
                 try {
-                    general.put(isId.getIsOutput()
-                                    .getIsStringValue(),
+
+                    if (general.get(isStringValue) != null) {
+                        throw new StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("409"));
+                    }
+                    general.put(isStringValue,
                             isInput.getIsItemBytes());
                 } finally {
                     lock.unlock();
                 }
             } else {
-                general.put(isId.getIsOutput()
-                                .getIsStringValue(),
+                general.put(isStringValue,
                         isInput.getIsItemBytes());
             }
 
